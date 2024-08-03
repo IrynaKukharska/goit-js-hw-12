@@ -7,21 +7,37 @@ const gallery = document.querySelector('.gallery');
 const form = document.querySelector('.form');
 const loader = document.querySelector('.loader');
 
-form.addEventListener('submit', checkFormIsEmpty);
+// form.addEventListener('submit', checkFormIsEmpty);
 
-function checkFormIsEmpty(event) {
+// function checkFormIsEmpty(event) {
+//   event.preventDefault();
+
+//   const search = input.value.trim();
+
+//   if (search === '' || search.length < 3) {
+//     iziToast.warning({
+//       title: '❌',
+//       message: 'Будь ласка, введіть відповідний пошуковий запит!',
+//       messageColor: 'white',
+//       backgroundColor: 'red',
+//       position: 'topRight',
+//     });
+//     return;
+//   }
+// }
+
+form.addEventListener('submit', event => {
   event.preventDefault();
 
   const search = input.value.trim();
 
   if (search === '' || search.length < 3) {
-    iziToast.warning({
+    iziToast.show({
       title: '❌',
       message: 'Будь ласка, введіть відповідний пошуковий запит!',
       messageColor: 'white',
       backgroundColor: 'red',
       position: 'topRight',
     });
-    return;
   }
-}
+});
