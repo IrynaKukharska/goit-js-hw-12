@@ -1,6 +1,3 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-
 const API_KEY = '45161214-00df49493351083ca415a448c';
 
 function searchImages(query) {
@@ -11,4 +8,13 @@ function searchImages(query) {
     orientation: 'horizontal',
     safesearch: true,
   });
+
+  return fetch(`https://pixabay.com/api/?${searchPhotos}`).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  });
 }
+
+export default searchImages;

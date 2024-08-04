@@ -117,3 +117,23 @@
     content: '100%';
   }
 }
+
+.form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.input {
+  width: 200px;
+  height: 30px;
+  border-color: #a50505;
+  border-radius: 6px;
+}
+
+.button {
+  background-color: #bc9090;
+  color: #760000;
+  border-radius: 6px;
+}
