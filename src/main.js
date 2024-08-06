@@ -1,8 +1,13 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+import searchImages from './js/pixabay-api.js';
+import renderImages from './js/render-functions.js';
+
 const input = document.querySelector('.input');
-const button = document.querySelector('.button');
 const gallery = document.querySelector('.gallery');
 const form = document.querySelector('.form');
 const loader = document.querySelector('.loader');
@@ -12,15 +17,45 @@ form.addEventListener('submit', event => {
 
   const search = input.value.trim();
 
-  if (search === '' || search.length < 3) {
+  if (search === '') {
     iziToast.show({
       title: '❌',
-      message: 'Будь ласка, введіть відповідний пошуковий запит!',
+      message: 'Please enter the appropriate search query!',
       messageColor: 'white',
       backgroundColor: 'pink',
       position: 'topRight',
     });
+    return;
   }
-  loader.style.display = 'block';
-  list.innerHTML = '';
+  loader.classList.remove('is-hidden');
+  gallery.innerHTML = '';
+  // data.hits  - зображення
+  searchImages(search)
+    .then(data => {
+      if (data.hits.length === 0) {
+        iziToast.show({
+          title: '❌',
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+          messageColor: 'black',
+          backgroundColor: 'orange',
+          position: 'topRight',
+        });
+        return;
+      }
+      renderImages(data.hits);
+      form.reset();
+    })
+    .catch(error =>
+      iziToast.show({
+        title: '❌',
+        message: error.message,
+        messageColor: 'black',
+        backgroundColor: 'red',
+        position: 'topRight',
+      })
+    )
+    .finally(() => {
+      loader.classList.add('is-hidden');
+    });
 });
