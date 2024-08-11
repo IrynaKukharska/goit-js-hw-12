@@ -183,7 +183,6 @@ ul {
 img {
   display: block;
   max-width: 100%;
-  height: auto;
 }
 
 h3,
@@ -196,4 +195,17 @@ li {
 .main-content {
   margin: 0;
   border: 1px solid #bc3f3f;
+}
+
+.load-more-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+}
+
+.last-container {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
 }

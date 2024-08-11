@@ -16,6 +16,8 @@ const renderImages = resultData => {
         `<li class="gallery-item">
         <a class="gallery-link" href="${element.largeImageURL}">
           <img
+          width="400"
+          height="240"
             class="item-image"
             src="${element.webformatURL}"
             alt="${element.tags}"
