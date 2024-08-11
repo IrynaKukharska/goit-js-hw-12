@@ -111,7 +111,6 @@ async function onLoadMore() {
 
 function smoothScroll() {
   const { height } = gallery.firstElementChild.getBoundingClientRect(); // висота нашої першої лішки
-  console.log(height);
 
   window.scrollBy({
     top: height * 2, // висота двох карточок
